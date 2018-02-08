@@ -1,0 +1,34 @@
+library(fivethirtyeight)
+
+# Bechdel data set (note that data is lazy loaded so one can also just access `bechdel` without running `data(bechdel)`):
+data(college_recent_grads)
+head(college_recent_grads)
+?college_recent_grads
+# If using RStudio:
+View(college_recent_grads)
+
+# To see a list of all data sets:
+data(package = "fivethirtyeight")
+
+# To see a more detailed list of all data sets, see the package vignette:
+#vignette("college_recent_grads", package = "fivethirtyeight")
+# Assign the eighteeth data set to an objewct df
+
+df <- data.frame(college_recent_grads)
+#Using R command(s), give the dimensions and column names of this data frame
+dim(df)
+#Write an R command that gives you the column names of the data frame.
+colnames(df)
+#Generate a count of each unique major_category in the data frame
+library(MASS)
+major_count <- (table(df$major_category))
+major_count
+#Make a barplot of major_count
+par(las=2) 
+counts <- table(df$major_category)
+barplot(counts, main="MAJORS", 
+        xlab="major_category",col=c(1,2,3,4,5,10,21,31,41,51,11,12,13,14,15))
+#Write the fivethirtyeight data to a csv file.  Make sure that it does not have row labels.
+setwd("C:/Data Science/MSDS 6306 Doing Data Science/Chapter4")
+getwd()
+write.csv(df, file = "fivethirtyeight.csv",row.names=FALSE)
